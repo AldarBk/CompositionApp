@@ -9,6 +9,7 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentGameBinding
 import com.example.myapplication.domain.entity.GameResult
 import com.example.myapplication.domain.entity.GameSettings
+import com.example.myapplication.domain.entity.Level
 
 class GameFragment : Fragment() {
 
@@ -52,7 +53,9 @@ class GameFragment : Fragment() {
     }
 
     private fun parseArgs() {
-        level = requireArguments().getSerializable(KEY_LEVEL) as com.example.myapplication.domain.entity.Level
+        requireArguments().getParcelable<Level>(KEY_LEVEL)?.let {
+            level = it
+        }
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
@@ -70,7 +73,7 @@ class GameFragment : Fragment() {
         fun newInstance(level: com.example.myapplication.domain.entity.Level): GameFragment {
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL, level)
+                    putParcelable(KEY_LEVEL, level)
                 }
             }
         }
