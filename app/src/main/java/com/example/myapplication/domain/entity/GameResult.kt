@@ -1,5 +1,4 @@
 package com.example.myapplication.domain.entity
-
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
@@ -10,3 +9,4 @@ data class GameResult(
     val countOfQuestions: Int,
     val gameSettings: GameSettings
 ) : Parcelable
+

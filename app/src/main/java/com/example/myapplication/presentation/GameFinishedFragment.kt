@@ -78,6 +78,7 @@ class GameFinishedFragment : Fragment() {
             return GameFinishedFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(KEY_GAME_RESULT, gameResult)
+
                 }
             }
         }
