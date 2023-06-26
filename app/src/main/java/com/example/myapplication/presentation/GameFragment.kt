@@ -35,11 +35,9 @@ class GameFragment : Fragment() {
         }
     }
 
-
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
         get() = _binding ?: throw RuntimeException("FragmentGameBinding == null")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +46,7 @@ class GameFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentGameBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,12 +55,11 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
-        setClickListenerToOptions()
-        viewModel.startGame()
+        setClickListenersToOptions()
+        viewModel.startGame(level)
     }
 
-
-    private fun setClickListenerToOptions() {
+    private fun setClickListenersToOptions() {
         for (tvOption in tvOptions) {
             tvOption.setOnClickListener {
                 viewModel.chooseAnswer(tvOption.text.toString().toInt())
@@ -71,7 +68,7 @@ class GameFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.question.observe(viewLifecycleOwner){
+        viewModel.question.observe(viewLifecycleOwner) {
             binding.tvSum.text = it.sum.toString()
             binding.tvLeftNumber.text = it.visibleNumber.toString()
             for (i in 0 until tvOptions.size) {
@@ -107,7 +104,6 @@ class GameFragment : Fragment() {
         _binding = null
     }
 
-
     private fun getColorByState(goodState: Boolean): Int {
         val colorResId = if (goodState) {
             android.R.color.holo_green_light
@@ -132,8 +128,8 @@ class GameFragment : Fragment() {
 
     companion object {
 
+        const val NAME = "GameFragment"
         private const val KEY_LEVEL = "level"
-
 
         fun newInstance(level: Level): GameFragment {
             return GameFragment().apply {
