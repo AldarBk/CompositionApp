@@ -81,6 +81,7 @@ class GameFinishedFragment : Fragment() {
         }
     }
 
+
     private fun getPercentOfRightAnswers() = with(gameResult) {
         if (countOfQuestions == 0) {
             0
