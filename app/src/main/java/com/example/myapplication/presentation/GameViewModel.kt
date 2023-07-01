@@ -2,7 +2,6 @@ package com.example.myapplication.presentation
 
 import android.app.Application
 import android.os.CountDownTimer
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +21,7 @@ private val level: Level
 
     private lateinit var gameSettings: GameSettings
 
-    private val context = application
+  //  private val context = application
     private val repository = GameRepositoryImpl
 
     private val generateQuestionUseCase = GenerateQuestionUseCase(repository)
