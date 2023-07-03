@@ -1,5 +1,6 @@
 package com.example.myapplication.presentation
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.myapplication.R
@@ -42,5 +43,18 @@ private fun getPercentOfRightAnswers(gameResult: GameResult) = with(gameResult) 
         0
     } else {
         ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
+    }
+}
+
+@BindingAdapter("resultEmoji")
+fun bindResultEmoji(imageView: ImageView, winner: Boolean) {
+    imageView.setImageResource(getSmileResId(winner))
+}
+
+private fun getSmileResId(winner: Boolean): Int {
+    return if (winner) {
+        R.drawable.ic_smile
+    } else {
+        R.drawable.ic_sad
     }
 }
