@@ -10,6 +10,11 @@ import androidx.databinding.BindingAdapter
 import com.example.myapplication.R
 import com.example.myapplication.domain.entity.GameResult
 
+
+
+interface OnOptionClickListener {
+    fun onOptionClick(option: Int)
+}
 @BindingAdapter("requiredAnswers")
 fun bindRequiredAnswers(textView: TextView, count: Int) {
     textView.text = String.format(
@@ -86,4 +91,11 @@ private fun getColorByState(context: Context, goodState: Boolean): Int {
 @BindingAdapter("numberAsText")
 fun bindNumberAsText(textView: TextView,number: Int) {
     textView.text = number.toString()
+}
+
+@BindingAdapter("onOptionClickListener")
+fun binOnOptionClickListener(textView: TextView, clickListener: OnOptionClickListener) {
+    textView.setOnClickListener {
+        clickListener.onOptionClick(textView.text.toString().toInt())
+    }
 }
